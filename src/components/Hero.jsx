@@ -2,9 +2,9 @@ import React from "react";
 const HeroSection = () => {
     return (
       <section
-        className="h-screen flex flex-col justify-center items-center bg-cover bg-center"
+        className="h-screen flex flex-col justify-center items-center bg-cover bg-center bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500"
         style={{
-          backgroundImage: "url('https://source.unsplash.com/featured/?abstract,pattern')",
+          // backgroundImage: "url('https://source.unsplash.com/featured/?abstract,pattern')",
         }}
       >
         <div className="container mx-auto text-white">

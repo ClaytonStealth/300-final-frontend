@@ -1,14 +1,17 @@
 import Footer from "./components/Footer";
 import HeroSection from "./components/Hero";
 import LandingPage from "./components/Landing";
-import NavBar from "./components/NavBar";
-import NavBarAI from "./components/NavBarAI";
+import NavBar from "./components/NavBarAI";
+import RegistrationPage from "./components/RegistrationPage";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
     <div className='App'>
-      <NavBarAI />
+      <NavBar />
       <HeroSection />
+      <RegistrationPage />
+      <UserProfile />
       <Footer />
     </div>
   );

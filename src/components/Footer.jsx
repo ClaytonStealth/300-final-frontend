@@ -2,37 +2,75 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className='bg-gray-300 p-4'>
-        <div className='container mx-auto'>
-          {/* Links and contact info */}
-          <div className='flex justify-between items-center'>
-            <div>
-              <a href='/privacy-policy' className='mr-4'>
-                Privacy Policy
-              </a>
-              <a href='/terms-of-service'>Terms of Service</a>
-            </div>
-            <div>
-              <a href='mailto:contact@createaimg.com' className='mr-4'>
-                Email Us
-              </a>
-              <a href='/support'>Support</a>
-            </div>
-            <div>
-              {/* Social media icons */}
-              <a href='https://facebook.com/createaimg' className='mr-4'>
-                Facebook
-              </a>
-              <a href='https://twitter.com/createaimg' className='mr-4'>
-                Twitter
-              </a>
-              <a href='https://linkedin.com/company/createaimg'>LinkedIn</a>
-            </div>
+    <footer className='bg-blue-600 text-white py-8'>
+      <div className='container mx-auto px-4'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+          <div>
+            <h2 className='text-xl font-bold mb-4'>CreateA.Img</h2>
+            <p className='text-sm'>
+              We help professionals create stunning images with AI-driven
+              technology.
+            </p>
+          </div>
+          <div>
+            <h2 className='text-xl font-bold mb-4'>Quick Links</h2>
+            <ul className='space-y-2'>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  About Us
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className='text-xl font-bold mb-4'>Contact Us</h2>
+            <ul className='space-y-2'>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  Email
+                </a>
+              </li>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  Phone
+                </a>
+              </li>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href='#' className='hover:text-blue-400'>
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </footer>
-    </div>
+        <hr className='my-8 border-t border-blue-400' />
+        <div className='text-center'>
+          <p className='text-sm'>
+            &copy; {new Date().getFullYear()} CreateA.Img. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
