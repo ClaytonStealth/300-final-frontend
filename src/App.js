@@ -7,8 +7,9 @@ import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
-    <div className='App'>
+    <div className='bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 min-h-screen'>
       <NavBar />
+      <LandingPage />
       <HeroSection />
       <RegistrationPage />
       <UserProfile />

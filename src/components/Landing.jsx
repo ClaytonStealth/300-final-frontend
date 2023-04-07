@@ -1,111 +1,181 @@
 import React from "react";
 
-const LandingPage = () => {
+function LandingPage() {
   return (
-    <div className='min-h-screen bg-gray-100'>
-      <header className='bg-blue-600 p-4 fixed w-full text-white'>
-        <div className='container mx-auto'>
-          <div className='flex justify-between items-center'>
-            <div>CreateA.Img</div>
-            <nav className='space-x-4'>
-              <a href='#home'>Home</a>
-              <a href='#about'>About</a>
-              <a href='#features'>Features</a>
-              <a href='#pricing'>Pricing</a>
-              <a href='#contact'>Contact</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      <main className='pt-16'>
-        {/* Hero section */}
-        <section className='bg-cover bg-center h-screen text-white flex flex-col justify-center items-center'>
-          <h1 className='text-4xl font-bold'>
-            Generate Stunning Images with CreateA.Img
+    <div className='bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 min-h-screen'>
+      <section className='h-screen flex flex-col justify-center items-center'>
+        <div className='container mx-auto text-white'>
+          <h1 className='text-4xl font-bold text-center mb-4'>
+            Create Stunning Images with CreateA.Img
           </h1>
-          <p className='text-xl mt-4 mb-8'>
+          <p className='text-xl text-center mb-8'>
             AI-driven image generation for professional photos and marketing
           </p>
-          <button className='bg-blue-600 px-8 py-2 rounded hover:bg-blue-700'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-8'>
+            <div className='bg-white p-4 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>Input Image</h3>
+              <img
+                src='/images/input-image.jpg'
+                alt='Input Image'
+                className='w-full h-64 object-cover rounded'
+              />
+            </div>
+            <div className='bg-white p-4 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>
+                AI-Generated Image
+              </h3>
+              <img
+                src='/images/ai-generated-image.jpg'
+                alt='AI-Generated Image'
+                className='w-full h-64 object-cover rounded'
+              />
+            </div>
+          </div>
+          <button className='bg-blue-600 px-8 py-2 rounded hover:bg-blue-700 text-white'>
             Try It Now
           </button>
-        </section>
-
-        {/* Features section */}
-        <section className='py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-          {/* Feature 1 */}
-          <div className='bg-white shadow p-4 rounded'>
-            <div className='text-blue-600'>Feature 1</div>
-            <p>Short description about Feature 1</p>
-          </div>
-          {/* Feature 2 */}
-          <div className='bg-white shadow p-4 rounded'>
-            <div className='text-blue-600'>Feature 2</div>
-            <p>Short description about Feature 2</p>
-          </div>
-          {/* Feature 3 */}
-          <div className='bg-white shadow p-4 rounded'>
-            <div className='text-blue-600'>Feature 3</div>
-            <p>Short description about Feature 3</p>
-          </div>
-          {/* Feature 4 */}
-          <div className='bg-white shadow p-4 rounded'>
-            <div className='text-blue-600'>Feature 4</div>
-            <p>Short description about Feature 4</p>
-          </div>
-        </section>
-
-        {/* Examples section */}
-        <section className='py-12'>
-          <h2 className='text-2xl font-bold mb-6'>Image Examples</h2>
-          {/* Slider or carousel */}
-        </section>
-
-        {/* Pricing section */}
-        <section className='py-12'>
-          <h2 className='text-2xl font-bold mb-6'>Pricing Plans</h2>
-          {/* Pricing cards */}
-        </section>
-
-        {/* Testimonials section */}
-        <section className='py-12'>
-          <h2 className='text-2xl font-bold mb-6'>Testimonials</h2>
-          {/* Slider or carousel */}
-        </section>
-      </main>
-
-      <footer className='bg-gray-300 p-4'>
-        <div className='container mx-auto'>
-          {/* Links and contact info */}
-          <div className='flex justify-between items-center'>
-            <div>
-              <a href='/privacy-policy' className='mr-4'>
-                Privacy Policy
-              </a>
-              <a href='/terms-of-service'>Terms of Service</a>
+        </div>
+      </section>
+      <section className='py-20 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500'>
+        <div className='container mx-auto text-white'>
+          <h2 className='text-3xl font-bold text-center mb-4'>
+            Create Stunning Images with AI
+          </h2>
+          <p className='text-lg text-center mb-8'>
+            CreateA.Img is an AI-driven image generation tool that can help you
+            create professional-quality photos and marketing materials.
+          </p>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>Fast</h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                Our AI algorithms work quickly to generate high-quality images
+                in no time.
+              </p>
+              <img src='/images/fast.svg' alt='Fast' className='mx-auto h-20' />
             </div>
-            <div>
-              <a href='mailto:contact@createaimg.com' className='mr-4'>
-                Email Us
-              </a>
-              <a href='/support'>Support</a>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>Easy</h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                CreateA.Img is easy to use and requires no technical expertise.
+              </p>
+              <img src='/images/easy.svg' alt='Easy' className='mx-auto h-20' />
             </div>
-            <div>
-              {/* Social media icons */}
-              <a href='https://facebook.com/createaimg' className='mr-4'>
-                Facebook
-              </a>
-              <a href='https://twitter.com/createaimg' className='mr-4'>
-                Twitter
-              </a>
-              <a href='https://linkedin.com/company/createaimg'>LinkedIn</a>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3
+                className='text-blue-900
+          text-center mb-4'
+              >
+                Affordable
+              </h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                Our pricing plans are flexible and affordable, making it easy to
+                use our tool without breaking the bank.
+              </p>
+              <img
+                src='/images/affordable.svg'
+                alt='Affordable'
+                className='mx-auto h-20'
+              />
             </div>
           </div>
         </div>
-      </footer>
+      </section>
+      <section className='py-20 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500'>
+        <div className='container mx-auto text-white'>
+          <h2 className='text-3xl font-bold text-center mb-4'>
+            Features of CreateA.Img
+          </h2>
+          <p className='text-lg text-center mb-8'>
+            CreateA.Img comes with a range of features that can help you create
+            stunning images.
+          </p>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>Image Filters</h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                CreateA.Img comes with a range of image filters that can help
+                you enhance your photos and create stunning effects.
+              </p>
+              <img
+                src='/images/filters.svg'
+                alt='Filters'
+                className='mx-auto h-20'
+              />
+            </div>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>
+                Image Manipulation
+              </h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                CreateA.Img allows you to manipulate your images in a variety of
+                ways, including cropping, resizing, and more.
+              </p>
+              <img
+                src='/images/manipulation.svg'
+                alt='Manipulation'
+                className='mx-auto h-20'
+              />
+            </div>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>
+                Image Generation
+              </h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                CreateA.Img uses AI algorithms to generate high-quality images
+                based on your inputs and preferences.
+              </p>
+              <img
+                src='/images/generation.svg'
+                alt='Generation'
+                className='mx-auto h-20'
+              />
+            </div>
+            <div className='bg-white p-8 rounded shadow-md'>
+              <h3 className='text-blue-900 text-center mb-4'>Customization</h3>
+              <p className='text-lg text-gray-700 text-center mb-4'>
+                CreateA.Img allows you to customize your images by adjusting
+                various settings and parameters.
+              </p>
+              <img
+                src='/images/customization.svg'
+                alt='Customization'
+                className='mx-auto h-20'
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className='py-20 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500'>
+        <div className='container mx-auto text-white'>
+          <h2 className='text-3xl font-bold text-center mb-4'>
+            Try CreateA.Img Today
+          </h2>
+          <p className='text-lg text-center mb-8'>
+            Sign up for CreateA.Img today and start creating stunning images
+            with ease.
+          </p>
+          <div className='flex justify-center'>
+            <button className='bg-blue-600 px-8 py-2 rounded hover:bg-blue-700 text-white'>
+              Sign Up Now
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className='py-20 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500'>
+        <div className='container mx-auto text-white'>
+          <h2 className='text-3xl font-bold text-center mb-4'>Contact Us</h2>
+          <p className='text-lg text-center mb-8'>
+            Have a question or feedback? Get in touch with our team today.
+          </p>
+          <div className='flex justify-center'>
+            <button className='bg-white px-8 py-2 rounded hover:bg-gray-100 text-blue-900'>
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-
+}
 export default LandingPage;
