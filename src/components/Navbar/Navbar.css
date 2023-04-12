@@ -1,0 +1,52 @@
+.text-gradient-hover {
+  position: relative;
+  font-weight: bold; /* Add this line */
+  color: white;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+
+.text-gradient-hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  color: transparent;
+  background-image: linear-gradient(to right, #8a2387, #e94057, #f27121);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: height 0.3s;
+}
+
+.text-gradient-hover:hover {
+  color: transparent;
+}
+
+.text-gradient-hover:hover::after {
+  height: 100%;
+}
+
+.gradient-button {
+  background-image: linear-gradient(to right, #8a2387, #e94057, #f27121);
+  background-size: 200% auto;
+  color: white;
+  transition: background-position 0.5s;
+  border: none;
+}
+
+.gradient-button:hover {
+  background-position: right center;
+}
+
+/* .custom-navbar {
+  width: 95%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+} */

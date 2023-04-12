@@ -1,0 +1,26 @@
+.image-generator-menu {
+  position: fixed;
+  top: 0;
+  right: -400px; /* initially hidden */
+  bottom: 0;
+  background-color: #1e1e1e;
+  z-index: 1000;
+  overflow: auto;
+  transition: right 0.3s ease-in-out; /* animate the right property */
+}
+.image-generator-menu-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1001; /* higher than the z-index of HiOutlineMenu */
+  background-color: #1e1e1e;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}

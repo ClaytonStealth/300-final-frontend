@@ -25,14 +25,17 @@ module.exports = {
   },
   plugins: [
     function ({ addUtilities, variants }) {
-      addUtilities(
-        {
-          ".before-slide:hover::before": {
-            transform: "translateX(100%)",
-          },
+      addUtilities({
+        ".resize-left": {
+          resize: "horizontal",
+          resize: "both",
+          resize: "initial",
+          "overflow-anchor": "none",
+          "overflow-anchor": "auto",
+          "overflow-anchor": "auto",
+          "overflow-anchor": "none",
         },
-        variants("before")
-      );
+      });
     },
   ],
 };

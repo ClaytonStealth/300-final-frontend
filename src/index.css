@@ -40,3 +40,55 @@
 .slide-button:hover::before {
   transform: translateX(0);
 }
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+button {
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: currentColor;
+}
+
+.nav-button {
+  font-weight: 600;
+  transition: all 0.2s;
+  border: none;
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* .custom-landing-page {
+  width: 95%;
+  height: 95%;
+  margin: auto;
+  position: relative;
+  border-radius: 15px;
+} */
+
+.custom-section {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d3748;
+  color: white;
+  padding: 2rem;
+  border-top: 1px solid white;
+}
