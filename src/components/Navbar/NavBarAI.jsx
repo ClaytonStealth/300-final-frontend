@@ -1,14 +1,19 @@
 import React, { useState, useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
 
-import { FaBars } from "react-icons/fa";
-import "./Navbar.css"; // Import the CSS file
+import { FaBars, FaUser } from "react-icons/fa";
+import "./Navbar.css";
 import LoginModal from "../LoginModal";
+import UserProfile from "../UserProfile";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
   const login = useContext(LoginContext);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
+
+  const auth = useContext(AuthContext);
 
   const handleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -72,7 +77,15 @@ const Navbar = () => {
               </a>
             </nav>
             <div className='hidden md:flex space-x-4'>
-              <div className='relative inline-block'>
+              <div className='relative inline-flex items-center gap-8'>
+                <FaUser
+                  size={24}
+                  className={`mr-2 text-white ${
+                    login.isLoggedIn ? "animate-ping" : ""
+                  }`}
+                  onClick={() => setIsUserProfileOpen(true)}
+                />
+
                 <button
                   className='px-4 py-2 rounded-lg gradient-button'
                   onClick={() => setIsModalOpen(true)}
@@ -81,6 +94,7 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
+
             <button
               className='md:hidden text-white'
               onClick={handleMobileMenu}
@@ -129,18 +143,31 @@ const Navbar = () => {
                   Contact
                 </a>
 
-                <button
-                  className='block gradient-button px-4 py-2 rounded mt-2 w-full'
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Sign In
-                </button>
+                <div className='flex justify-between items-center mt-2'>
+                  <FaUser
+                    size={24}
+                    className={`text-white ${
+                      auth.isAuth ? "animate-ping" : ""
+                    }`}
+                    onClick={() => setIsUserProfileOpen(true)}
+                  />
+                  <button
+                    className='gradient-button px-4 py-2 rounded'
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Sign In
+                  </button>
+                </div>
               </div>
             </div>
           )}
         </div>
       </header>
       <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <UserProfile
+        isOpen={isUserProfileOpen}
+        onClose={() => setIsUserProfileOpen(false)}
+      />
     </>
   );
 };

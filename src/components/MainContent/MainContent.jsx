@@ -1,9 +1,10 @@
 import React from "react";
-
+import ResizableSidebar from "./ResizableSideMenu";
+import RightSide from "./RightSide";
 const MainContent = () => {
   return (
-    <div className='w-full h-screen bg-gray-200'>
-      {/* Your main content goes here */}
+    <div className='w-full h-screen bg-gray-200 pt-16'>
+      <RightSide />
     </div>
   );
 };
