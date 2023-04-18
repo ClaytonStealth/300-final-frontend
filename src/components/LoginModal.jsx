@@ -16,11 +16,11 @@ function LoginModal({ isOpen, onClose }) {
   const login = useContext(LoginContext);
   const dispatch = useContext(LoginDispatchContext);
   const [loginState, setLoginState] = useState({
+    name: "",
     username: "",
     password: "",
-    name: "",
     email: "",
-    token: 0,
+    aitoken: 0,
   });
   const [isRegistration, setIsRegistration] = useState(false);
   const onChangeHandler = (e) => {
@@ -112,6 +112,14 @@ function LoginModal({ isOpen, onClose }) {
                       onChange={onChangeHandler}
                     />
                     {login.message}
+                    <br/>
+                    {login.name}
+                    <br/>
+                    {login.username}
+                    <br/>
+                    {login.email}
+                    <br/>
+                    {login.token}
                   </div>
                   <div className='mt-4'>
                     <button

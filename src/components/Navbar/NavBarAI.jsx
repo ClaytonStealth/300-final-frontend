@@ -12,8 +12,8 @@ const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
-
   const auth = useContext(AuthContext);
+  console.log(auth.isAuth);
 
   const handleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -78,13 +78,13 @@ const Navbar = () => {
             </nav>
             <div className='hidden md:flex space-x-4'>
               <div className='relative inline-flex items-center gap-8'>
-                <FaUser
-                  size={24}
-                  className={`mr-2 text-white ${
-                    login.isLoggedIn ? "animate-ping" : ""
-                  }`}
-                  onClick={() => setIsUserProfileOpen(true)}
-                />
+                {auth.isAuth && (
+                  <FaUser
+                    size={24}
+                    className={`mr-2 text-white animate-pulse`}
+                    onClick={() => setIsUserProfileOpen(true)}
+                  />
+                )}
 
                 <button
                   className='px-4 py-2 rounded-lg gradient-button'
@@ -144,13 +144,13 @@ const Navbar = () => {
                 </a>
 
                 <div className='flex justify-between items-center mt-2'>
-                  <FaUser
-                    size={24}
-                    className={`text-white ${
-                      auth.isAuth ? "animate-ping" : ""
-                    }`}
-                    onClick={() => setIsUserProfileOpen(true)}
-                  />
+                  {auth.isAuth && (
+                    <FaUser
+                      size={24}
+                      className={"text-white animate-ping"}
+                      onClick={() => setIsUserProfileOpen(true)}
+                    />
+                  )}
                   <button
                     className='gradient-button px-4 py-2 rounded'
                     onClick={() => setIsModalOpen(true)}

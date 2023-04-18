@@ -2,9 +2,11 @@ import { createContext, useReducer } from "react";
 export const LoginContext = createContext(null);
 export const LoginDispatchContext = createContext(null);
 const initialState = {
-  firstname: "",
+  name: "",
   username: "",
   password: "",
+  email: "",
+  aitoken: 0,
   isAuth: false,
   message: "Please Log In",
 };

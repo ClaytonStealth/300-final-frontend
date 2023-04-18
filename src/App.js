@@ -11,7 +11,7 @@ function App() {
       <LoginProvider>
         <NavBar />
       </LoginProvider>
-      {/* <LandingPage /> */}
+      <LandingPage />
       <MainContent />
     </div>
   );
