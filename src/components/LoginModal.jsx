@@ -9,12 +9,18 @@ import {
 } from "../context/LoginContextFuncs";
 import { checkAuthToken } from "../lib/checkAuthToken";
 import { AuthContext, AuthDispatchContext } from "../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser, registerUser } from "../redux/userSlice";
 
 function LoginModal({ isOpen, onClose }) {
   const auth = useContext(AuthContext);
   const authDispatch = useContext(AuthDispatchContext);
   const login = useContext(LoginContext);
   const dispatch = useContext(LoginDispatchContext);
+
+  const dispatchRedux = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const [loginState, setLoginState] = useState({
     name: "",
     username: "",
@@ -112,13 +118,13 @@ function LoginModal({ isOpen, onClose }) {
                       onChange={onChangeHandler}
                     />
                     {login.message}
-                    <br/>
+                    <br />
                     {login.name}
-                    <br/>
+                    <br />
                     {login.username}
-                    <br/>
+                    <br />
                     {login.email}
-                    <br/>
+                    <br />
                     {login.token}
                   </div>
                   <div className='mt-4'>

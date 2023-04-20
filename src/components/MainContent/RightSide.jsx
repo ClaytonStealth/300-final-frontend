@@ -8,54 +8,59 @@ const RightSide = () => {
   const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
-    const resizer = resizerRef.current;
+    const resizer = resizerRef.current; //stores values to reference in dom elements
     const sidebar = sidebarRef.current;
 
     const initResizerFn = (resizer, sidebar) => {
-      let x, w;
-
+      //value ref passed in as arguments
+      let x, w; 
       const rs_mousedownHandler = (e) => {
-        x = e.clientX;
-        w = sidebar.clientWidth;
+        x = e.clientX; //initial X position of the cursor
+        w = sidebar.clientWidth; //initial width of the sidebar
 
-        document.addEventListener("mousemove", rs_mousemoveHandler);
-        document.addEventListener("mouseup", rs_mouseupHandler);
+        document.addEventListener("mousemove", rs_mousemoveHandler); //event listener added when mousedown to listen for
+        document.addEventListener("mouseup", rs_mouseupHandler); //mousemove and mouse up events
       };
-
+      //when cursor moves while holding click mousemove is triggering
       const rs_mousemoveHandler = (e) => {
-        const dx = e.clientX - x;
-        const cw = w - dx;
+        const dx = e.clientX - x; // change in cursor position
+        const cw = w - dx; //width of sidebar- change in cursor position out of 1080
 
         if (cw < 700) {
-          sidebar.style.width = `${cw}px`;
+          //if  sidebar width measurement < 700
+          sidebar.style.width = `${cw}px`; //set the sidebar width
         }
 
         if (cw <= 200) {
-          sidebar.style.display = "none";
+          //if less or equal to 200
+          sidebar.style.display = "none"; //vanish and pop up the arrow
           setShowArrow(true);
         } else {
-          sidebar.style.display = "block";
+          sidebar.style.display = "block"; //else more than 200 block display
           setShowArrow(false);
         }
       };
 
       const rs_mouseupHandler = () => {
+        //on mouse up remove the move and up event listeners
         document.removeEventListener("mouseup", rs_mouseupHandler);
         document.removeEventListener("mousemove", rs_mousemoveHandler);
       };
 
-      resizer.addEventListener("mousedown", rs_mousedownHandler);
+      resizer.addEventListener("mousedown", rs_mousedownHandler); // resizer bar mousedown event listener to trigger it all
     };
 
-    initResizerFn(resizer, sidebar);
+    initResizerFn(resizer, sidebar); //evoke
   }, []);
 
   const handleArrowClick = () => {
     const sidebar = sidebarRef.current;
-    sidebar.style.width = "200px";
+    sidebar.style.width = "200px"; //when mouse click on the icon arrow later set hidden menu to 200px width and block display
     sidebar.style.display = "block";
     setShowArrow(false);
   };
+
+  //In summary, this component creates a resizable right-hand side menu using useRef and useEffect. The useRef hooks store references to the DOM elements, while the useEffect sets up the resizing functionality by adding event listeners for mousedown, mousemove, and mouseup events. The resizing functionality updates the sidebar width and toggles the arrow button based on the user's interactions.
 
   return (
     <div className='w-full h-full flex'>
