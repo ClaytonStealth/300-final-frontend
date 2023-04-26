@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { LoginContext, LoginDispatchContext } from "../context/LoginContext";
+import { useDispatch, useSelector } from "react-redux";
 
 const UserProfile = ({ isOpen, onClose }) => {
   const orders = [
@@ -9,7 +9,7 @@ const UserProfile = ({ isOpen, onClose }) => {
     { id: 2, date: "2023-02-23", total: "$240" },
     { id: 3, date: "2023-03-11", total: "$50" },
   ];
-  const login = useContext(LoginContext);
+  const user = useSelector((state) => state.user);
   return (
     <Transition show={isOpen} as={Fragment}>
       <div className='fixed inset-0 z-50 flex items-center justify-center'>
@@ -28,8 +28,8 @@ const UserProfile = ({ isOpen, onClose }) => {
               />
             </div>
             <div className='text-center mb-6'>
-              <h2 className='font-semibold text-xl'>{login.name}</h2>
-              <p className='text-gray-700'>{login.email}</p>
+              <h2 className='font-semibold text-xl'>{user.name}</h2>
+              <p className='text-gray-700'>{user.email}</p>
             </div>
             <h3 className='font-bold text-xl mb-4'>Order History</h3>
             <div className='overflow-x-auto'>

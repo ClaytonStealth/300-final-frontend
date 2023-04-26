@@ -1,23 +1,28 @@
-import React, { useState, useContext } from "react";
-import { LoginContext } from "../../context/LoginContext";
+import React, { useState, useEffect } from "react";
 
 import { FaBars, FaUser } from "react-icons/fa";
 import "./Navbar.css";
 import LoginModal from "../LoginModal";
 import UserProfile from "../UserProfile";
-import { AuthContext } from "../../context/AuthContext";
 
+import { useDispatch, useSelector } from "react-redux";
+import { authFailure, authLogout, authSuccess } from "../../redux/authSlice";
+import { checkAuthToken } from "../../lib/checkAuthToken";
 const Navbar = () => {
-  const login = useContext(LoginContext);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
-  const auth = useContext(AuthContext);
-  console.log(auth.isAuth);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.auth);
 
   const handleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
+  useEffect(() => {
+    let authy = checkAuthToken();
+    authy ? dispatch(authSuccess()) : dispatch(authFailure());
+  }, []);
 
   return (
     <>

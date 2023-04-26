@@ -1,69 +1,75 @@
 import React, { useRef, useEffect, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
-const RightSide = () => {
+const RightSide = ({ images, setSelectedImages }) => {
+  // References for the resizer and sidebar elements
   const resizerRef = useRef();
   const sidebarRef = useRef();
+
+  // State for managing the visibility of the prompt textarea and arrow button
   const [showPrompt, setShowPrompt] = useState(false);
   const [showArrow, setShowArrow] = useState(false);
 
+  // Initialize the resizing functionality when the component mounts
   useEffect(() => {
-    const resizer = resizerRef.current; //stores values to reference in dom elements
+    const resizer = resizerRef.current;
     const sidebar = sidebarRef.current;
 
+    // Function to handle resizing logic
     const initResizerFn = (resizer, sidebar) => {
-      //value ref passed in as arguments
-      let x, w; 
+      let x, w;
+
+      // Event handler for starting to resize the sidebar
       const rs_mousedownHandler = (e) => {
-        x = e.clientX; //initial X position of the cursor
-        w = sidebar.clientWidth; //initial width of the sidebar
+        x = e.clientX;
+        w = sidebar.clientWidth;
 
-        document.addEventListener("mousemove", rs_mousemoveHandler); //event listener added when mousedown to listen for
-        document.addEventListener("mouseup", rs_mouseupHandler); //mousemove and mouse up events
+        document.addEventListener("mousemove", rs_mousemoveHandler);
+        document.addEventListener("mouseup", rs_mouseupHandler);
       };
-      //when cursor moves while holding click mousemove is triggering
-      const rs_mousemoveHandler = (e) => {
-        const dx = e.clientX - x; // change in cursor position
-        const cw = w - dx; //width of sidebar- change in cursor position out of 1080
 
+      // Event handler for resizing the sidebar while dragging
+      const rs_mousemoveHandler = (e) => {
+        const dx = e.clientX - x;
+        const cw = w - dx;
+
+        // Control the width and visibility of the sidebar based on current width (cw)
         if (cw < 700) {
-          //if  sidebar width measurement < 700
-          sidebar.style.width = `${cw}px`; //set the sidebar width
+          sidebar.style.width = `${cw}px`;
         }
 
         if (cw <= 200) {
-          //if less or equal to 200
-          sidebar.style.display = "none"; //vanish and pop up the arrow
+          sidebar.style.display = "none";
           setShowArrow(true);
         } else {
-          sidebar.style.display = "block"; //else more than 200 block display
+          sidebar.style.display = "block";
           setShowArrow(false);
         }
       };
 
+      // Event handler for stopping the resizing of the sidebar
       const rs_mouseupHandler = () => {
-        //on mouse up remove the move and up event listeners
         document.removeEventListener("mouseup", rs_mouseupHandler);
         document.removeEventListener("mousemove", rs_mousemoveHandler);
       };
 
-      resizer.addEventListener("mousedown", rs_mousedownHandler); // resizer bar mousedown event listener to trigger it all
+      // Add the mousedown event listener to the resizer
+      resizer.addEventListener("mousedown", rs_mousedownHandler);
     };
 
-    initResizerFn(resizer, sidebar); //evoke
+    initResizerFn(resizer, sidebar);
   }, []);
 
+  // Handle the click event for the arrow button, which restores the sidebar
   const handleArrowClick = () => {
     const sidebar = sidebarRef.current;
-    sidebar.style.width = "200px"; //when mouse click on the icon arrow later set hidden menu to 200px width and block display
+    sidebar.style.width = "200px";
     sidebar.style.display = "block";
     setShowArrow(false);
   };
 
-  //In summary, this component creates a resizable right-hand side menu using useRef and useEffect. The useRef hooks store references to the DOM elements, while the useEffect sets up the resizing functionality by adding event listeners for mousedown, mousemove, and mouseup events. The resizing functionality updates the sidebar width and toggles the arrow button based on the user's interactions.
-
   return (
-    <div className='w-full h-full flex'>
+    <div className='w-full h-full flex z-[1000]'>
       {showArrow && (
         <button
           className='absolute right-0 bg-gray-200 p-2'
@@ -82,7 +88,31 @@ const RightSide = () => {
         ></div>
         <div className='p-4'>
           <h3 className='text-white mb-4'>Customize Model</h3>
-          <div className='mb-4'>
+          {Object.keys(images).map((type) => {
+            return (
+              <div key={type} className='mb-4'>
+                <label className='block mb-2'>
+                  {type}
+                </label>
+                <select
+                  className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'
+                  onChange={(e) =>
+                    setSelectedImages({ ...images, [type]: e.target.value })
+                  }
+                >
+                  <option>Select {type}</option>
+                  {images[type].map((image) => {
+                    return (
+                      <option key={image} value={image}>
+                        {image}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            );
+          })}
+          {/* <div className='mb-4'>
             <label className='block mb-2'>Select a model</label>
             <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
               <option>Select model</option>
@@ -92,7 +122,6 @@ const RightSide = () => {
               <option>Model 4</option>
             </select>
           </div>
-          {/* Other dropdowns */}
           <div className='mb-4'>
             <label className='block mb-2'>Background</label>
             <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
@@ -104,35 +133,25 @@ const RightSide = () => {
             </select>
           </div>
           <div className='mb-4'>
-            <label className='block mb-2'>Eyes</label>
+            <label className='block mb-2'>Helm</label>
             <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Select eyes</option>
-              <option>Eyes 1</option>
-              <option>Eyes 2</option>
-              <option>Eyes 3</option>
-              <option>Eyes 4</option>
+              <option>Helm</option>
+              <option>Helm 1</option>
+              <option>Helm 2</option>
+              <option>Helm 3</option>
+              <option>Helm 4</option>
             </select>
           </div>
           <div className='mb-4'>
             <label className='block mb-2'>Face</label>
             <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Select face</option>
-              <option>Face 1</option>
-              <option>Face 2</option>
-              <option>Face 3</option>
-              <option>Face 4</option>
+              <option>Select Weap</option>
+              <option>Weap 1</option>
+              <option>Weap 2</option>
+              <option>Weap 3</option>
+              <option>Weap 4</option>
             </select>
-          </div>
-          <div className='mb-4'>
-            <label className='block mb-2'>Clothing</label>
-            <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Select clothing</option>
-              <option>Clothing 1</option>
-              <option>Clothing 2</option>
-              <option>Clothing 3</option>
-              <option>Clothing 4</option>
-            </select>
-          </div>
+          </div> */}
           <div className='mb-4'>
             <label
               className='block mb-2 cursor-pointer'

@@ -32,7 +32,7 @@ function LandingPage() {
                 />
               </div>
             </div>
-            <button className='bg-indigo-600 px-8 py-2 rounded hover:bg-indigo-700'>
+            <button className='gradient-button px-8 py-2 rounded'>
               Try It Now
             </button>
           </div>
@@ -162,7 +162,7 @@ function LandingPage() {
               professional-quality photos and marketing materials.
             </p>
             <div className='flex justify-center'>
-              <button className='bg-indigo-600 px-8 py-2 rounded hover:bg-indigo-700'>
+              <button className='gradient-button px-8 py-2 rounded'>
                 Sign Up
               </button>
             </div>

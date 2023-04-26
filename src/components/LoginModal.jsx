@@ -1,26 +1,22 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState, useContext } from "react";
-import { LoginContext, LoginDispatchContext } from "../context/LoginContext";
-import {
-  deleteUser,
-  fetchLogin,
-  logout,
-  register,
-} from "../context/LoginContextFuncs";
-import { checkAuthToken } from "../lib/checkAuthToken";
-import { AuthContext, AuthDispatchContext } from "../context/AuthContext";
+import { Fragment, useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, registerUser } from "../redux/userSlice";
+import { validator } from "../lib/validator";
+import { useNavigate } from "react-router-dom";
 
 function LoginModal({ isOpen, onClose }) {
-  const auth = useContext(AuthContext);
-  const authDispatch = useContext(AuthDispatchContext);
-  const login = useContext(LoginContext);
-  const dispatch = useContext(LoginDispatchContext);
-
-  const dispatchRedux = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const status = useSelector((state) => state.user.status);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user.status === "fulfilled") {
+      navigate("/main", { replace: true });
+    }
+  }, [status]);
   const [loginState, setLoginState] = useState({
     name: "",
     username: "",
@@ -29,11 +25,46 @@ function LoginModal({ isOpen, onClose }) {
     aitoken: 0,
   });
   const [isRegistration, setIsRegistration] = useState(false);
+
+  const [pwdMatch, setPwdMatch] = useState({
+    error: false,
+    message: "",
+  });
+  const [isValid, setIsValid] = useState({
+    firstname: { error: false, message: "" },
+    lastname: { error: false, message: "" },
+    username: { error: false, message: "" },
+    email: { error: false, message: "" },
+    password: { error: false, message: "" },
+  });
   const onChangeHandler = (e) => {
     setLoginState({
       ...loginState,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleSubmitLogin = (event) => {
+    let userObj = {
+      username: loginState.username,
+      email: loginState.email,
+      password: loginState.password,
+    };
+    dispatch(fetchUser(userObj));
+  };
+  const handleSubmitRegister = (event) => {
+    // loginState.password !== data.get("password1") &&
+    //   alert("Password do not match");
+    validator({
+      loginState,
+    });
+    dispatch(
+      registerUser({
+        name: loginState.name,
+        username: loginState.username,
+        password: loginState.password,
+        email: loginState.email,
+      })
+    );
   };
 
   return (
@@ -117,22 +148,13 @@ function LoginModal({ isOpen, onClose }) {
                       className='mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                       onChange={onChangeHandler}
                     />
-                    {login.message}
-                    <br />
-                    {login.name}
-                    <br />
-                    {login.username}
-                    <br />
-                    {login.email}
-                    <br />
-                    {login.token}
                   </div>
                   <div className='mt-4'>
                     <button
                       type='button'
                       className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                       onClick={() => {
-                        register(dispatch, loginState, authDispatch);
+                        handleSubmitRegister();
                         // onClose();
                       }}
                     >
@@ -146,7 +168,6 @@ function LoginModal({ isOpen, onClose }) {
                 {/* Login form */}
                 <div className='mt-2'>
                   <div className='mt-4'>
-                    {login.message}
                     <label
                       htmlFor='username'
                       className='block text-sm font-medium text-gray-700'
@@ -181,7 +202,7 @@ function LoginModal({ isOpen, onClose }) {
                       type='button'
                       className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                       onClick={() => {
-                        fetchLogin(dispatch, loginState, authDispatch);
+                        handleSubmitLogin();
                         onClose();
                       }}
                     >
@@ -201,7 +222,6 @@ function LoginModal({ isOpen, onClose }) {
                   ? "Already a member? Click here to login"
                   : "Not a member yet? Click here to register"}
               </button>
-              {/* {(auth.isAuth) ? onClose(): null} */}
             </div>
           </div>
         </div>

@@ -1,8 +1,12 @@
+import { setHeaderToken } from "./setHeaderToken";
+
 export const checkAuthToken = () => {
-  const jwtToken = localStorage.getItem("jwtToken");
+  let jwtToken = localStorage.getItem("jwtToken");
   if (jwtToken) {
-    // alert("true");
+    setHeaderToken(jwtToken);
+    return true;
   } else {
-    // alert("false");
+    //set auth false
+    return false;
   }
 };
