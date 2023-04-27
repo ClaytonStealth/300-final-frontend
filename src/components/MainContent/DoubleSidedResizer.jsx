@@ -118,10 +118,10 @@ const DoubleSidedResizer = () => {
         className='w-full h-full flex flex-col items-center justify-center bg-gray-200 overflow-hidden'
       >
         {/* Add your left side content (PNG images) here */}
-        <img src='image1.png' alt='Image 1' className='object-contain' />
-        <img src='image2.png' alt='Image 2' className='object-contain' />
-        <img src='image3.png' alt='Image 3' className='object-contain' />
-        <img src='image4.png' alt='Image 4' className='object-contain' />
+        <img src='image1.png' alt='Ima 1' className='object-contain' />
+        <img src='image2.png' alt='Ima 2' className='object-contain' />
+        <img src='image3.png' alt='Ima 3' className='object-contain' />
+        <img src='image4.png' alt='Ima 4' className='object-contain' />
       </div>
       <div
         ref={resizerRef}
