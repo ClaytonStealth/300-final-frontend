@@ -91,9 +91,7 @@ const RightSide = ({ images, setSelectedImages }) => {
           {Object.keys(images).map((type) => {
             return (
               <div key={type} className='mb-4'>
-                <label className='block mb-2'>
-                  {type}
-                </label>
+                <label className='block mb-2'>{type}</label>
                 <select
                   className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'
                   onChange={(e) =>
@@ -112,46 +110,6 @@ const RightSide = ({ images, setSelectedImages }) => {
               </div>
             );
           })}
-          {/* <div className='mb-4'>
-            <label className='block mb-2'>Select a model</label>
-            <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Select model</option>
-              <option>Model 1</option>
-              <option>Model 2</option>
-              <option>Model 3</option>
-              <option>Model 4</option>
-            </select>
-          </div>
-          <div className='mb-4'>
-            <label className='block mb-2'>Background</label>
-            <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Select background</option>
-              <option>Background 1</option>
-              <option>Background 2</option>
-              <option>Background 3</option>
-              <option>Background 4</option>
-            </select>
-          </div>
-          <div className='mb-4'>
-            <label className='block mb-2'>Helm</label>
-            <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Helm</option>
-              <option>Helm 1</option>
-              <option>Helm 2</option>
-              <option>Helm 3</option>
-              <option>Helm 4</option>
-            </select>
-          </div>
-          <div className='mb-4'>
-            <label className='block mb-2'>Face</label>
-            <select className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'>
-              <option>Select Weap</option>
-              <option>Weap 1</option>
-              <option>Weap 2</option>
-              <option>Weap 3</option>
-              <option>Weap 4</option>
-            </select>
-          </div> */}
           <div className='mb-4'>
             <label
               className='block mb-2 cursor-pointer'
@@ -167,6 +125,9 @@ const RightSide = ({ images, setSelectedImages }) => {
               ></textarea>
             )}
           </div>
+        </div>
+        <div className="flex justify-center">
+        <button className='gradient-button px-4 py-2 rounded'>Sign In</button>
         </div>
       </div>
     </div>

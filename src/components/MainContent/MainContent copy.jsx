@@ -60,8 +60,39 @@ const MainContent = () => {
   });
 
   return (
-    <div className='w-full h-screen bg-slate-700 pt-16 relative'>
-      <RightSide />
+    <div className='w-full h-screen bg-slate-700 pt-16 relative flex'>
+      {/* <ResizableSideMenu /> */}
+      {selectedImages.background && (
+        <img
+          src={selectedImages.background}
+          alt={selectedImages.background}
+          className='absolute z-0 top-0 left-0 w-full h-full object-cover'
+        />
+      )}
+      {selectedImages.weap && (
+        <img
+          src={selectedImages.weap}
+          alt={selectedImages.weap}
+          className='absolute z-10 top-0 left-0 w-full h-full object-cover'
+        />
+      )}
+      {selectedImages.model && (
+        <img
+          src={selectedImages.model}
+          alt={selectedImages.model}
+          className='absolute z-20 top-0 left-0 w-full h-full object-cover'
+        />
+      )}
+      {selectedImages.helm && (
+        <img
+          src={selectedImages.helm}
+          alt={selectedImages.helm}
+          className='absolute z-30 top-0 left-0 w-full h-full object-cover'
+        />
+      )}
+      
+        {/* <RightSide images={images} setSelectedImages={setSelectedImages} /> */}
+      
     </div>
   );
 };

@@ -4,25 +4,31 @@ import { FaBars, FaUser } from "react-icons/fa";
 import "./Navbar.css";
 import LoginModal from "../LoginModal";
 import UserProfile from "../UserProfile";
+import { useNavigate, Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { authFailure, authLogout, authSuccess } from "../../redux/authSlice";
 import { checkAuthToken } from "../../lib/checkAuthToken";
 const Navbar = () => {
+  const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
+  const status = useSelector((state) => state.user.status);
 
   const handleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
   useEffect(() => {
+    if (user.status === "fulfilled") {
+      navigate("/generator", { replace: true });
+    }
     let authy = checkAuthToken();
     authy ? dispatch(authSuccess()) : dispatch(authFailure());
-  }, []);
+  }, [status]);
 
   return (
     <>
@@ -45,36 +51,36 @@ const Navbar = () => {
               CreateA.Img
             </div>
             <nav className='hidden md:flex space-x-4'>
-              <a
-                href='#home'
+              <Link
+                to='/'
                 className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
                 data-text='Home'
               >
                 Home
-              </a>
+              </Link>
               <a
-                href='#about'
+                href='#'
                 className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
                 data-text='About'
               >
                 About
               </a>
-              <a
-                href='#features'
+              <Link
+                to='/generator'
                 className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
-                data-text='Features'
+                data-text='Generator'
               >
-                Features
-              </a>
+                Generator
+              </Link>
               <a
-                href='#pricing'
+                href='#'
                 className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
                 data-text='Pricing'
               >
                 Pricing
               </a>
               <a
-                href='#contact'
+                href='#'
                 className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
                 data-text='Contact'
               >
@@ -90,7 +96,7 @@ const Navbar = () => {
                     onClick={() => setIsUserProfileOpen(true)}
                   />
                 )}
-
+                {/* {!auth.isAuth && ()} */}
                 <button
                   className='px-4 py-2 rounded-lg gradient-button'
                   onClick={() => setIsModalOpen(true)}
@@ -152,7 +158,7 @@ const Navbar = () => {
                   {auth.isAuth && (
                     <FaUser
                       size={24}
-                      className={"text-white animate-ping"}
+                      className={"text-white animate-pulse"}
                       onClick={() => setIsUserProfileOpen(true)}
                     />
                   )}

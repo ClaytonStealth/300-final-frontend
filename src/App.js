@@ -1,12 +1,11 @@
-import { createContext, useContext, useState } from "react";
-import { LoginContext, LoginProvider } from "./context/LoginContext";
+import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import LandingPage from "./components/Landing";
-import NavBar from "./components/Navbar/NavBarAI";
 import MainContent from "./components/MainContent/MainContent";
 import ErrorPage from "./pages/ErrorPage";
 import Layout from "./components/Layout";
+import DoubleSidedResizer from "./components/MainContent/DoubleSidedResizer";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +14,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: "/main", element: <MainContent /> },
+      { path: "/generator", element: <DoubleSidedResizer /> },
     ],
   },
 ]);

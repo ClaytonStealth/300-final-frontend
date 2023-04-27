@@ -14,7 +14,7 @@ function LoginModal({ isOpen, onClose }) {
 
   useEffect(() => {
     if (user.status === "fulfilled") {
-      navigate("/main", { replace: true });
+      navigate("/generator", { replace: true });
     }
   }, [status]);
   const [loginState, setLoginState] = useState({

@@ -35,6 +35,7 @@ export const registerUser = createAsyncThunk(
 );
 const initialState = {
   username: "",
+  name: "",
   email: "",
   password: "",
   status: null,
@@ -56,6 +57,7 @@ export const userSlice = createSlice({
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.username = action.payload.user.username;
+        state.name = action.payload.user.name;
         state.email = action.payload.user.email;
         state.status = "fulfilled";
         state.message = "";
