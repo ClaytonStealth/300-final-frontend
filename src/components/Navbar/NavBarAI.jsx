@@ -58,13 +58,7 @@ const Navbar = () => {
               >
                 Home
               </Link>
-              <a
-                href='#'
-                className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
-                data-text='About'
-              >
-                About
-              </a>
+
               <Link
                 to='/generator'
                 className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
@@ -72,20 +66,6 @@ const Navbar = () => {
               >
                 Generator
               </Link>
-              <a
-                href='#'
-                className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
-                data-text='Pricing'
-              >
-                Pricing
-              </a>
-              <a
-                href='#'
-                className='text-gradient-hover rounded px-3 py-1 transition-colors duration-200'
-                data-text='Contact'
-              >
-                Contact
-              </a>
             </nav>
             <div className='hidden md:flex space-x-4'>
               <div className='relative inline-flex items-center gap-8'>

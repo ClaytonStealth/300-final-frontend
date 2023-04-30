@@ -5,7 +5,6 @@ import LandingPage from "./components/Landing";
 import MainContent from "./components/MainContent/MainContent";
 import ErrorPage from "./pages/ErrorPage";
 import Layout from "./components/Layout";
-import DoubleSidedResizer from "./components/MainContent/DoubleSidedResizer";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +13,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: "/generator", element: <DoubleSidedResizer /> },
+      { path: "/generator", element: <MainContent /> },
     ],
   },
 ]);

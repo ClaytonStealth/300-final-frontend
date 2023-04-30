@@ -1,5 +1,3 @@
-import React from "react";
-
 const checker = (key, element) => {
   //false= no error
   //true = error
