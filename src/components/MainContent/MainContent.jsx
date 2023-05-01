@@ -100,7 +100,7 @@ const MainContent = () => {
             <img
               src={selectedImages.helm}
               alt={selectedImages.helm}
-              className='absolute z-20 top-0 left-0 w-full h-full object-cover'
+              className='absolute z-30 top-0 left-0 w-full h-full object-cover'
             />
           )}
         </div>
@@ -116,7 +116,10 @@ const MainContent = () => {
                   <select
                     className='bg-gray-700 text-white rounded p-2 focus:outline-none w-full'
                     onChange={(e) =>
-                      setSelectedImages({ ...selectedImages, [type]: e.target.value })
+                      setSelectedImages({
+                        ...selectedImages,
+                        [type]: e.target.value,
+                      })
                     }
                   >
                     <option>Select {type}</option>
