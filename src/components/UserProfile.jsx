@@ -1,21 +1,16 @@
 import React from "react";
 import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const UserProfile = ({ isOpen, onClose }) => {
-  const orders = [
-    { id: 1, date: "2023-01-15", total: "$120" },
-    { id: 2, date: "2023-02-23", total: "$240" },
-    { id: 3, date: "2023-03-11", total: "$50" },
-  ];
   const user = useSelector((state) => state.user);
   console.log(user.orders);
   const getFileNameFromPath = (path) => {
     const pathParts = path.split("/");
-    const fileNameWithHash = pathParts[pathParts.length - 1];
-    console.log(fileNameWithHash);
-    return fileNameWithHash.split(".")[0];
+    const longFileName = pathParts[pathParts.length - 1];
+    console.log(longFileName);
+    return longFileName.split(".")[0];
   };
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -56,9 +51,15 @@ const UserProfile = ({ isOpen, onClose }) => {
                         <td className='border-b py-2 px-4'>
                           {getFileNameFromPath(order.background)}
                         </td>
-                        <td className='border-b py-2 px-4'>{getFileNameFromPath(order.weap)}</td>
-                        <td className='border-b py-2 px-4'>{getFileNameFromPath(order.model)}</td>
-                        <td className='border-b py-2 px-4'>{getFileNameFromPath(order.helm)}</td>
+                        <td className='border-b py-2 px-4'>
+                          {getFileNameFromPath(order.weap)}
+                        </td>
+                        <td className='border-b py-2 px-4'>
+                          {getFileNameFromPath(order.model)}
+                        </td>
+                        <td className='border-b py-2 px-4'>
+                          {getFileNameFromPath(order.helm)}
+                        </td>
                       </tr>
                     );
                   })}
