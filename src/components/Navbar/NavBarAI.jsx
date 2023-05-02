@@ -98,42 +98,20 @@ const Navbar = () => {
           {showMobileMenu && (
             <div className='md:hidden'>
               <div className='mt-2 py-3 px-4 bg-gray-800 rounded-md'>
-                <a
-                  href='#home'
+                <Link
+                  to='/'
                   className='block text-white font-semibold mb-2 text-gradient-hover'
                   data-text='Home'
                 >
                   Home
-                </a>
-                <a
-                  href='#about'
+                </Link>
+                <Link
+                  to='/generator'
                   className='block text-white font-semibold mb-2 text-gradient-hover'
                   data-text='About'
                 >
-                  About
-                </a>
-                <a
-                  href='#features'
-                  className='block text-white font-semibold mb-2 text-gradient-hover'
-                  data-text='Features'
-                >
-                  Features
-                </a>
-                <a
-                  href='#pricing'
-                  className='block text-white font-semibold mb-2 text-gradient-hover'
-                  data-text='Pricing'
-                >
-                  Pricing
-                </a>
-                <a
-                  href='#contact'
-                  className='block text-white font-semibold mb-2 text-gradient-hover'
-                  data-text='Contact'
-                >
-                  Contact
-                </a>
-
+                  Generator
+                </Link>
                 <div className='flex justify-between items-center mt-2'>
                   {auth.isAuth && (
                     <FaUser

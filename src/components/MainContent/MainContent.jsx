@@ -72,7 +72,7 @@ const MainContent = () => {
 
   return (
     <Split
-      className='pt-16 h-screen w-full flex flex-row'
+      className='pt-16 h-screen w-full flex flex-row overflow-y-hidden'
       sizes={[80, 20]}
       minSize={100}
       expandToMin={false}
@@ -83,8 +83,8 @@ const MainContent = () => {
       direction='horizontal'
       cursor='col-resize'
     >
-      <div>
-        <div className='w-full h-screen bg-slate-700 pt-16 relative'>
+      <div className="">
+        <div className='w-full h-screen bg-slate-700 relative'>
           {selectedImages.background && (
             <img
               src={selectedImages.background}
@@ -115,8 +115,8 @@ const MainContent = () => {
           )}
         </div>
       </div>
-      <div>
-        <div className='ml-auto h-full overflow-x-hidden bg-gray-900 text-white'>
+      <div className="">
+        <div className='ml-auto h-screen w-full overflow-x-hidden bg-gray-900 text-white'>
           <div className='p-4'>
             <h3 className='text-white mb-4'>Customize Model</h3>
             {Object.keys(images).map((type) => {

@@ -71,6 +71,7 @@ export const userSlice = createSlice({
         state.email = action.payload.user.email;
         state.status = "fulfilled";
         state.message = "";
+        state.orders = action.payload.user.orders
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.status = "rejected";

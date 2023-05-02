@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function LandingPage() {
   return (
     <div className='custom-landing-page bg-transparent min-h-screen'>
@@ -17,7 +17,7 @@ function LandingPage() {
                 <h3 className='text-slate-900 text-center mb-4'>Input Image</h3>
                 <img
                   src='https://source.unsplash.com/featured/?camera'
-                  alt='Input Image'
+                  alt='Input'
                   className='w-full h-64 object-cover rounded'
                 />
               </div>
@@ -27,7 +27,7 @@ function LandingPage() {
                 </h3>
                 <img
                   src='https://source.unsplash.com/featured/?generated'
-                  alt='AI-Generated Image'
+                  alt='AI-Generated'
                   className='w-full h-64 object-cover rounded'
                 />
               </div>
@@ -171,7 +171,7 @@ function LandingPage() {
         <footer className='bg-slate-900 text-white py-8'>
           <div className='container mx-auto px-4'>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center'>
-              <div>
+              <div className='text-center'>
                 <h2 className='text-xl font-bold mb-4'>CreateA.Img</h2>
                 <p className='text-sm' style={{ wordWrap: "break-word" }}>
                   We help professionals create stunning images with AI-driven
@@ -182,24 +182,15 @@ function LandingPage() {
                 <h2 className='text-xl font-bold mb-4'>Quick Links</h2>
                 <ul className='space-y-2'>
                   <li>
-                    <a href='#' className='hover:text-indigo-400'>
+                    <Link to='/' className='hover:text-indigo-400'>
                       Home
-                    </a>
+                    </Link>
                   </li>
+
                   <li>
-                    <a href='#' className='hover:text-indigo-400'>
-                      Features
-                    </a>
-                  </li>
-                  <li>
-                    <a href='#' className='hover:text-indigo-400'>
-                      Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a href='#' className='hover:text-indigo-400'>
-                      About Us
-                    </a>
+                    <Link to='/generator' className='hover:text-indigo-400'>
+                      Generator
+                    </Link>
                   </li>
                 </ul>
               </div>
