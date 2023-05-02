@@ -33,6 +33,15 @@ export const registerUser = createAsyncThunk(
     };
   }
 );
+
+export const orderIMG = createAsyncThunk("user/orderIMG", async (userOrder) => {
+  let response = await Axios.post("/users/order-images", userOrder);
+  console.log(response.data.userObj.orders);
+  return {
+    orders: response.data.userObj.orders,
+  };
+});
+
 const initialState = {
   username: "",
   name: "",
@@ -40,6 +49,7 @@ const initialState = {
   password: "",
   status: null,
   message: "",
+  orders: [],
 };
 export const userSlice = createSlice({
   name: "user",
@@ -69,7 +79,11 @@ export const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state = action.payload.user;
       })
-      .addCase(registerUser.rejected, (state, action) => {});
+      .addCase(registerUser.rejected, (state, action) => {})
+      .addCase(orderIMG.fulfilled, (state, action) => {
+        console.log(action.payload.orders);
+        state.orders = action.payload.orders
+      });
   },
 });
 

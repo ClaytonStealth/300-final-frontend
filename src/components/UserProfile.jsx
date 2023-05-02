@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,13 @@ const UserProfile = ({ isOpen, onClose }) => {
     { id: 3, date: "2023-03-11", total: "$50" },
   ];
   const user = useSelector((state) => state.user);
+  console.log(user.orders);
+  const getFileNameFromPath = (path) => {
+    const pathParts = path.split("/");
+    const fileNameWithHash = pathParts[pathParts.length - 1];
+    console.log(fileNameWithHash);
+    return fileNameWithHash.split(".")[0];
+  };
   return (
     <Transition show={isOpen} as={Fragment}>
       <div className='fixed inset-0 z-50 flex items-center justify-center'>
@@ -31,24 +38,30 @@ const UserProfile = ({ isOpen, onClose }) => {
               <h2 className='font-semibold text-xl'>{user.name}</h2>
               <p className='text-gray-700'>{user.email}</p>
             </div>
-            <h3 className='font-bold text-xl mb-4'>Order History</h3>
+            <h3 className='font-bold text-xl mb-4'>Orderd Images</h3>
             <div className='overflow-x-auto'>
               <table className='w-full text-left border-collapse'>
                 <thead>
                   <tr>
-                    <th className='border-b py-2 font-bold px-4'>Order ID</th>
-                    <th className='border-b py-2 font-bold px-4'>Date</th>
-                    <th className='border-b py-2 font-bold px-4'>Total</th>
+                    <th className='border-b py-2 font-bold px-4'>BG</th>
+                    <th className='border-b py-2 font-bold px-4'>Weap</th>
+                    <th className='border-b py-2 font-bold px-4'>Model</th>
+                    <th className='border-b py-2 font-bold px-4'>Helm</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order) => (
-                    <tr key={order.id}>
-                      <td className='border-b py-2 px-4'>{order.id}</td>
-                      <td className='border-b py-2 px-4'>{order.date}</td>
-                      <td className='border-b py-2 px-4'>{order.total}</td>
-                    </tr>
-                  ))}
+                  {user.orders.map((order, index) => {
+                    return (
+                      <tr key={index}>
+                        <td className='border-b py-2 px-4'>
+                          {getFileNameFromPath(order.background)}
+                        </td>
+                        <td className='border-b py-2 px-4'>{getFileNameFromPath(order.weap)}</td>
+                        <td className='border-b py-2 px-4'>{getFileNameFromPath(order.model)}</td>
+                        <td className='border-b py-2 px-4'>{getFileNameFromPath(order.helm)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

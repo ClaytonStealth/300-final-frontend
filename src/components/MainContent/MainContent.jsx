@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Split from "react-split";
 import "./split.css";
+import { useDispatch, useSelector } from "react-redux";
+import { orderIMG } from "../../redux/userSlice";
 import {
   backpack,
   BlackBG,
@@ -27,6 +29,14 @@ import {
 
 const MainContent = () => {
   const [showPrompt, setShowPrompt] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const getFileNameFromPath = (path) => {
+    const pathParts = path.split("/");
+    const longFileName = pathParts[pathParts.length - 1];
+    console.log(longFileName);
+    return longFileName.split(".")[0];
+  };
 
   const helm = [vrhelmet, spacehelmet, scifihelmet, militaryhelmet];
   const weap = [
@@ -126,7 +136,7 @@ const MainContent = () => {
                     {images[type].map((image) => {
                       return (
                         <option key={image} value={image}>
-                          {image}
+                          {getFileNameFromPath(image)}
                         </option>
                       );
                     })}
@@ -151,8 +161,13 @@ const MainContent = () => {
             </div>
           </div>
           <div className='flex justify-center'>
-            <button className='gradient-button px-4 py-2 rounded'>
-              Sign In
+            <button
+              className='gradient-button px-4 py-2 rounded'
+              onClick={() => {
+                dispatch(orderIMG(selectedImages));
+              }}
+            >
+              Order
             </button>
           </div>
         </div>
